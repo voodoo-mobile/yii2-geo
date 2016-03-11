@@ -28,7 +28,7 @@ class Cluster
      */
     protected static function checkItem($item)
     {
-        if (!ArrayHelper::keyExists('lat', $item) || !ArrayHelper::keyExists('lat', $item)) {
+        if (!ArrayHelper::getValue($item, 'lat') || !ArrayHelper::getValue($item, 'lat')) {
 
             throw new Exception('Items should have \'lat\' and \'lng\' properties');
         }
