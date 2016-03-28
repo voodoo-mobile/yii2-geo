@@ -17,6 +17,6 @@ class GeoLocationAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $js = [
-        'js/vm-geo-location'
+        'js/vm-geo-location.js'
     ];
 }
