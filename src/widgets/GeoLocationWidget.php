@@ -5,10 +5,12 @@ use yii\base\Widget;
 
 class GeoLocationWidget extends Widget
 {
+    public $updatePageAfter = true;
+
     public function run()
     {
         $isLocated = \Yii::$app->session->get('coordinates.isLocated');
 
-        return $this->render('geo-location', ['isLocated' => $isLocated]);
+        return $this->render('geo-location', ['isLocated' => $isLocated, 'toUpdate' => $this->updatePageAfter]);
     }
 }

@@ -7,9 +7,14 @@ $(document).ready(function() {
             var longitude = position.coords.longitude;
             var url = locationInfo.data('url');
 
+            locationInfo.data('lat', latitude);
+            locationInfo.data('lng', longitude);
+
             $.post(url, { lat: latitude, lng: longitude })
                 .done(function( data ) {
-                    window.location.reload()
+                    if (locationInfo.data('toUpdate')) {
+                        window.location.reload()
+                    }
                 });
 
         }, function (err) {
