@@ -11,6 +11,11 @@ class GeoLocationWidget extends Widget
     {
         $isLocated = \Yii::$app->session->get('coordinates.isLocated');
 
-        return $this->render('geo-location', ['isLocated' => $isLocated, 'toUpdate' => $this->updatePageAfter]);
+        return $this->render('geo-location', [
+            'isLocated' => $isLocated,
+            'toUpdate' => $this->updatePageAfter,
+            'lat' => \Yii::$app->session->get('coordinates.lat'),
+            'lng' => \Yii::$app->session->get('coordinates.lng'),
+        ]);
     }
 }
