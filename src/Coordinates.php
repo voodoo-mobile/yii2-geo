@@ -52,7 +52,7 @@ class Coordinates
 
     const MILES_TO_METERS_DIVIDER = 0.62137;
 
-    const KM_AT_DEGREE = 63 / 0.62137;
+    const KM_AT_DEGREE = 101.388866;
 
     /**
      * @param $meters
