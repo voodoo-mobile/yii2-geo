@@ -1,10 +1,10 @@
 <?php
 
-namespace vm\geo;
+namespace vr\geo;
 
 /**
  * Class ActiveQueryRandomTrait
- * @package vm\core
+ * @package vr\core
  */
 trait ActiveQueryGeoTrait
 {
@@ -16,32 +16,35 @@ trait ActiveQueryGeoTrait
      */
     public function orderByNearby($lat, $lng)
     {
-        return $this->select('*, DEGREES(ACOS(COS(RADIANS(lat)) * COS(RADIANS(:lat2)) *
-             COS(RADIANS(lng) - RADIANS(:lng2)) +
-             SIN(RADIANS(lat)) * SIN(RADIANS(:lat2)))) * :unit_in_degree as distance')->addParams([
-            'lat2' => $lat,
-            'lng2' => $lng,
-            'unit_in_degree' => Coordinates::KM_AT_DEGREE
-        ])->orderBy('distance');
+        /** @var ActiveQuery $this */
+        return $this
+            ->select('*, DEGREES(ACOS(COS(RADIANS(lat)) * COS(RADIANS(:lat)) *
+             COS(RADIANS(lng) - RADIANS(:lng)) +
+             SIN(RADIANS(lat)) * SIN(RADIANS(:lat)))) * :unit_in_degree as distance')
+            ->addParams([
+                ':lat'           => $lat,
+                ':lng'           => $lng,
+                'unit_in_degree' => Coordinates::KM_AT_DEGREE,
+            ])->orderBy('distance');
     }
 
     /**
      * @param $lat
      * @param $lng
      * @param $radius
-     *
      * Radius must be in miles
      */
     public function inRadius($lat, $lng, $radius)
     {
-        return $this->andWhere('DEGREES(ACOS(COS(RADIANS(lat)) * COS(RADIANS(:lat2)) *
-             COS(RADIANS(lng) - RADIANS(:lng2)) +
-             SIN(RADIANS(lat)) * SIN(RADIANS(:lat2)))) * :unit_in_degree < :radius',
+        /** @var ActiveQuery $this */
+        return $this->andWhere('DEGREES(ACOS(COS(RADIANS(lat)) * COS(RADIANS(:lat)) *
+             COS(RADIANS(lng) - RADIANS(:lng)) +
+             SIN(RADIANS(lat)) * SIN(RADIANS(:lat)))) * :unit_in_degree < :radius',
             [
-                'lat2'   => $lat,
-                'lng2'   => $lng,
-                'radius' => $radius,
-                'unit_in_degree'  => Coordinates::KM_AT_DEGREE
+                ':lat'            => $lat,
+                ':lng'            => $lng,
+                ':radius'         => $radius,
+                ':unit_in_degree' => Coordinates::KM_AT_DEGREE,
             ]
         );
     }
