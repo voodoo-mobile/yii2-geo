@@ -1,39 +1,38 @@
 {
-  "name": "voodoo-mobile/yii2-geo",
-  "description": "Geo helpers for Yii2.",
-  "type": "yii2-module",
-  "keywords": [
-    "voodoo-mobile",
-    "yii",
-    "yii2",
-    "yii 2",
-    "module",
-    "geo"
-  ],
-  "homepage": "https://github.com/voodoo-mobile/yii2-geo",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Voodoo Mobile Ltd.",
-      "email": "public@voodoo-mobile.com",
-      "homepage": "https://voodoo.rocks",
-      "role": "Developer"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/voodoo-mobile/yii2-geo/issues",
-    "source": "https://github.com/voodoo-mobile/yii2-geo"
-  },
-  "require": {
-    "php": ">=5.4.0",
-    "yiisoft/yii2": "^2.0.6"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "4.*"
-  },
-  "autoload": {
-    "psr-4": {
-      "vm\\geo\\": "src"
-    }
-  }
+	"name": "voodoo-rocks/yii2-geo",
+	"description": "Geo helpers for Yii2.",
+	"type": "yii2-module",
+	"keywords": [
+		"voodoo-rocks",
+		"yii",
+		"yii2",
+		"yii 2",
+		"module",
+		"geo"
+	],
+	"homepage": "https://github.com/voodoo-rocks/yii2-geo",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Voodoo Rocks Ltd.",
+			"email": "public@voodoo.rocks",
+			"homepage": "https://voodoo.rocks",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/voodoo-rocks/yii2-geo/issues",
+		"source": "https://github.com/voodoo-rocks/yii2-geo"
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"yiisoft/yii2": "~2.0"
+	},
+	"require-dev": {
+	},
+	"autoload": {
+		"psr-4": {
+			"vr\\geo\\": "src"
+		}
+	}
 }
