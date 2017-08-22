@@ -1,26 +1,33 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2013-2016 Voodoo Rocks Ltd
  * @link      https://voodoo.rocks
  * @license   http://opensource.org/licenses/MIT The MIT License (MIT)
  */
+
 namespace vr\geo;
 
-    /**
-     * Class Coordinates
-     * @package vr\geo
-     * Converts geo degree -> km and km -> geo degree approximately
-     * Transfer geo coord to Cartesian coordinate, use pixels at google map zoom level 21 like a points
-     */
-    /**
-     * Class Coordinates
-     * @package vr\geo
-     */
+use yii\base\Component;
+
 /**
+ * How to use:
+ * 1. You can create an object of this type like
+ *     $coordinates = new Coordinates();
+ *     $coordinates->distance(...)
+ * 2. Make it Yii2 way:
+ *     a) add following lines to config/web.php
+ *         ...
+ *         'coordinates' => [
+ *             'class' => '\vr\geo\Coordinates',
+ *         ]
+ *     b) use it everywhere you need this way
+ *         \Yii::$app->get('coordinates')->distance(...)
+ * -------------------------------------------------------
  * Class Coordinates
  * @package vr\geo
  */
-class Coordinates
+class Coordinates extends Component
 {
     /**
      *
@@ -92,8 +99,8 @@ class Coordinates
      * @return float
      */
     public function latToMercatorY($lat,
-                                   $width = self::HALF_OF_EARTH_CIRCUMFERENCE_IN_PIXELS,
-                                   $height = self::HALF_OF_EARTH_CIRCUMFERENCE_IN_PIXELS)
+        $width = self::HALF_OF_EARTH_CIRCUMFERENCE_IN_PIXELS,
+        $height = self::HALF_OF_EARTH_CIRCUMFERENCE_IN_PIXELS)
     {
         return ($height / 2) - ($width * log(tan((M_PI / 4) + (($lat * M_PI / 180) / 2))) / (2 * M_PI));
     }
@@ -105,7 +112,7 @@ class Coordinates
      * @return mixed
      */
     public function lngToMercatorX($lng,
-                                   $width = self::HALF_OF_EARTH_CIRCUMFERENCE_IN_PIXELS)
+        $width = self::HALF_OF_EARTH_CIRCUMFERENCE_IN_PIXELS)
     {
         return ($lng + 180) * ($width / 360);
     }
@@ -118,7 +125,7 @@ class Coordinates
      *
      * @return float
      */
-    public function pixelDistance($lat1, $lng1, $lat2, $lng2)
+    public function surfaceDistance($lat1, $lng1, $lat2, $lng2)
     {
         $x1 = self::lngToX($lng1);
         $y1 = self::latToY($lat1);
