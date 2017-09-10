@@ -68,8 +68,8 @@ class Geo extends Component
         );
 
         $streetAddress = trim(implode(' ', array_filter([
-            $short->street_number,
-            $short->route,
+            @$short->street_number,
+            @$short->route,
         ])));
 
         $location = new Location([
@@ -77,8 +77,8 @@ class Geo extends Component
             'city'          => @$short->postal_town ?: @$short->locality,
             'country'       => $long->country,
             'countryCode'   => $short->country,
-            'county'        => $short->administrative_area_level_1,
-            'postalCode'    => $short->postal_code,
+            'county'        => @$short->administrative_area_level_1,
+            'postalCode'    => @$short->postal_code,
             'formatted'     => $result->formatted_address,
             'lat'           => $result->geometry->location->lat,
             'lng'           => $result->geometry->location->lng,
